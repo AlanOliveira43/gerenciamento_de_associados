@@ -1,9 +1,8 @@
-CREATE DATABASE associacao;
+CREATE DATABASE IF NOT EXISTS associacao;
 
 USE associacao;
 
--- Tabela de associados
-CREATE TABLE associados (
+CREATE TABLE IF NOT EXISTS associados (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -11,15 +10,13 @@ CREATE TABLE associados (
     data_filiacao DATE NOT NULL
 );
 
--- Tabela de anuidades
-CREATE TABLE anuidades (
+CREATE TABLE IF NOT EXISTS anuidades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ano INT NOT NULL,
     valor DECIMAL(10, 2) NOT NULL
 );
 
--- Tabela de cobranças de anuidades dos associados
-CREATE TABLE cobrancas (
+CREATE TABLE IF NOT EXISTS cobrancas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     associado_id INT NOT NULL,
     anuidade_id INT NOT NULL,

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"  # O contêiner estará acessível em http://localhost:8080
+    volumes:
+      - ./src:/var/www/html  # Sincroniza os arquivos locais com o contêiner
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=associacao
+      - MYSQL_USER=usuario
+      - MYSQL_PASSWORD=senha
+      - MYSQL_ROOT_PASSWORD=rootpassword
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: associacao
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: senha
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Script para inicializar o banco
+
+volumes:
+  db_data:
