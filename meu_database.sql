@@ -1,27 +1,32 @@
-CREATE DATABASE IF NOT EXISTS associacao;
+-- Criação do Banco de Dados (no PostgreSQL, geralmente isso é feito fora do script)
+CREATE DATABASE associacao;
 
-USE associacao;
+-- Conectar ao banco de dados associacao
+\c associacao
 
-CREATE TABLE IF NOT EXISTS associados (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+-- Criação da Tabela de Associados
+CREATE TABLE associados (
+    id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
     cpf VARCHAR(11) UNIQUE NOT NULL,
     data_filiacao DATE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS anuidades (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+-- Criação da Tabela de Anuidades
+CREATE TABLE anuidades (
+    id SERIAL PRIMARY KEY,
     ano INT NOT NULL,
-    valor DECIMAL(10, 2) NOT NULL
+    valor NUMERIC(10, 2) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS cobrancas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+-- Criação da Tabela de Cobranças de Anuidades para cada Associado
+CREATE TABLE cobrancas (
+    id SERIAL PRIMARY KEY,
     associado_id INT NOT NULL,
     anuidade_id INT NOT NULL,
-    pago BOOLEAN DEFAULT 0,
+    pago BOOLEAN DEFAULT FALSE,
     data_cobranca DATE NOT NULL,
-    FOREIGN KEY (associado_id) REFERENCES associados(id),
-    FOREIGN KEY (anuidade_id) REFERENCES anuidades(id)
+    FOREIGN KEY (associado_id) REFERENCES associados(id) ON DELETE CASCADE,
+    FOREIGN KEY (anuidade_id) REFERENCES anuidades(id) ON DELETE CASCADE
 );

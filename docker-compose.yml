@@ -4,28 +4,26 @@ services:
   app:
     build: .
     ports:
-      - "8080:80"  # O contêiner estará acessível em http://localhost:8080
+      - "8080:80"
     volumes:
-      - ./src:/var/www/html  # Sincroniza os arquivos locais com o contêiner
+      - ./src:/var/www/html
     depends_on:
       - db
     environment:
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=associacao
-      - MYSQL_USER=usuario
-      - MYSQL_PASSWORD=senha
-      - MYSQL_ROOT_PASSWORD=rootpassword
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=associacao
+      - POSTGRES_USER=usuario
+      - POSTGRES_PASSWORD=senha
 
   db:
-    image: mysql:5.7
+    image: postgres:13
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: associacao
-      MYSQL_USER: usuario
-      MYSQL_PASSWORD: senha
+      POSTGRES_DB: associacao
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
     volumes:
-      - db_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Script para inicializar o banco
+      - db_data:/var/lib/postgresql/data
+      - ./meu_database.sql:/docker-entrypoint-initdb.d/meu_database.sql  # Script SQL de inicialização
 
 volumes:
   db_data:

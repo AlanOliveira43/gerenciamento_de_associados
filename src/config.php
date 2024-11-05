@@ -1,11 +1,12 @@
 <?php
-$host = getenv('MYSQL_HOST');
-$dbname = getenv('MYSQL_DATABASE');
-$username = getenv('MYSQL_USER');
-$password = getenv('MYSQL_PASSWORD');
+$host = 'localhost';
+$dbname = 'associacao';
+$username = 'seu_usuario';
+$password = 'sua_senha';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Conexão com PostgreSQL
+    $pdo = new PDO("pgsql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Erro de conexão: " . $e->getMessage());
