@@ -1,8 +1,8 @@
--- Criação do Banco de Dados (no PostgreSQL, geralmente isso é feito fora do script)
+-- Criação do Banco de Dados (Execute este comando separadamente, fora do script, se necessário)
 CREATE DATABASE associacao;
 
--- Conectar ao banco de dados associacao
-\c associacao
+-- Use o banco de dados associacao antes de executar este script
+-- No pgAdmin ou em outra ferramenta, selecione o banco de dados associacao antes de continuar.
 
 -- Criação da Tabela de Associados
 CREATE TABLE associados (
