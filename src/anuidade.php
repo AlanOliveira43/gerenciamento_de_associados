@@ -10,8 +10,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form action="anuidade.php" method="POST">
-    Ano: <input type="number" name="ano" required><br>
-    Valor: <input type="text" name="valor" required><br>
-    <button type="submit">Cadastrar Anuidade</button>
-</form>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Anuidade</title>
+</head>
+<body>
+    <form action="anuidade.php" method="POST">
+        <label for="ano">Ano:</label>
+        <input type="number" name="ano" id="ano" required><br>
+        
+        <label for="valor">Valor:</label>
+        <input type="text" name="valor" id="valor" required><br>
+        
+        <button type="submit">Cadastrar Anuidade</button>
+    </form>
+</body>
+</html>

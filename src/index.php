@@ -7,8 +7,8 @@ try {
         SELECT 
             associados.nome, 
             associados.email, 
-            anuidades.ano, 
-            anuidades.valor, 
+            COALESCE(anuidades.ano, 'N/A') AS ano, 
+            COALESCE(anuidades.valor, 0) AS valor, 
             COALESCE(cobrancas.pago, 0) AS pago
         FROM 
             associados
@@ -39,11 +39,25 @@ try {
         th { background-color: #f2f2f2; }
         .status-pago { color: green; }
         .status-pendente { color: red; }
+        .btn-refresh {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <h1>Gerenciamento de Associados</h1>
-    <p><a href="associado.php">Cadastrar novo associado</a> | <a href="anuidade.php">Gerenciar anuidades</a></p>
+    <p>
+        <a href="associado.php">Cadastrar novo associado</a> | 
+        <a href="anuidade.php">Gerenciar anuidades</a>
+    </p>
+    
+    <a href="index.php" class="btn-refresh">Atualizar</a>
 
     <h2>Associados e Status de Anuidades</h2>
     <?php if (count($resultados) > 0): ?>
