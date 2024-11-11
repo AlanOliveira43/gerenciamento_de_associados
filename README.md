@@ -42,6 +42,6 @@ Para que o PHP se conecte ao PostgreSQL, a extensão pdo_pgsql precisa estar hab
 
 -  Inicie o servidor web:
 
-- Se estiver usando PHP embutido:php -S localhost:8000
+- Se estiver usando PHP embutido:php -S localhost:4000
 
-- Abra o navegador e vá para:http://localhost:8000/gerenciamento_de_associados/src/index.php
+- Abra o navegador e vá para:http://localhost:4000/gerenciamento_de_associados/src/index.php

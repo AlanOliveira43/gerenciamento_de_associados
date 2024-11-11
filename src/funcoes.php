@@ -91,3 +91,4 @@ function verificar_status_associados() {
         return [];
     }
 }
+
