@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';        // Servidor do PostgreSQL
 $dbname = 'associacao';     // Nome do banco de dados criado
-$user = 'seu_usuario';      // Usuário do PostgreSQL
-$password = 'sua_senha';    // Senha do PostgreSQL
+$user = 'user';      // Usuário do PostgreSQL
+$password = 'password';    // Senha do PostgreSQL
 $port = '5432';             // Porta padrão do PostgreSQL
 
 try {

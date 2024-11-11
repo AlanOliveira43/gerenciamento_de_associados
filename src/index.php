@@ -2,28 +2,13 @@
 require 'config.php';
 
 try {
-    // Query para buscar todos os associados e seus status de pagamento de anuidades
-    $stmt = $pdo->prepare("
-        SELECT 
-            associados.nome, 
-            associados.email, 
-            COALESCE(anuidades.ano, 'N/A') AS ano, 
-            COALESCE(anuidades.valor, 0) AS valor, 
-            COALESCE(cobrancas.pago, 0) AS pago
-        FROM 
-            associados
-        LEFT JOIN 
-            cobrancas ON associados.id = cobrancas.associado_id
-        LEFT JOIN 
-            anuidades ON cobrancas.anuidade_id = anuidades.id
-        ORDER BY 
-            associados.nome, anuidades.ano;
-    ");
-    $stmt->execute();
-    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $pdo = new PDO("pgsql:host=localhost;dbname=user_database", "user", "password");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    die("Erro ao buscar dados: " . $e->getMessage());
+    echo "Erro na conexão: " . $e->getMessage();
+    exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +17,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Associados</title>
+    <link rel="stylesheet" href="/src/styles.css">
     <style>
         body { font-family: Arial, sans-serif; }
         table { width: 100%; border-collapse: collapse; margin: 20px 0; }
